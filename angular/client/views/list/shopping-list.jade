@@ -1,0 +1,54 @@
+h2.text-center Grocery List
+.container
+  .row
+    .col-xs-6
+      .form-group
+        h4 Name
+        input.form-control(type='text', ng-model='item.name')
+      .form-group
+        h4 Department
+        input.form-control(type='text', ng-model='item.department')
+      .form-group
+        h4 Qty:
+        input.form-control(type='number', ng-model='item.qty')
+      .form-group
+        h4 Priority
+        select.form-control(ng-model='item.priority')
+          option.form-control !!!
+          option.form-control !!
+          option.form-control !
+      .form-group
+        button.btn.btn-xs.btn-success.form-control(ng-hide='editing', ng-click='create(item)') Add
+        button.btn.btn-xs.btn-success.form-control(ng-show='editing', ng-click='saveChanges(item)') Save Edits
+    .col-xs-6
+      h4 Photo
+      button.btn.btn-xs.btn-success.form-control(ng-hide='cameraOn', ng-click='useCamera()') Open Camera
+      button.btn.btn-xs.btn-success.form-control(ng-show='cameraOn', ng-click='cameraOff()') Close Camera
+      #my_camera
+      img#my_result(ng-src='{{item.photo}}')
+      button.btn.btn-xs.btn-success.form-control(ng-click='takeSnapshot()') Take Picture
+
+.container
+  table.table.table-striped
+    thead
+      tr
+        th Name
+        th Looks like this
+        th Department
+        th Created At
+        th Priority
+        th Qty
+        th Done?
+        th Edit
+        th Delete
+    tbody
+      tr(ng-repeat='item in items track by $index')
+        td {{item.name}}
+        td: img.img-responsive#photo(ng-src='{{item.photo}}')
+        td {{item.department}}
+        td {{item.createdAt | date:'MM-dd-yyyy'}}
+        td {{item.priority}}
+        td {{item.qty}}
+        td: input(type='checkbox' ng-model='item.done' ng-click='update(item)') 
+        td: button.btn-info(ng-click='makeChanges(item)') Edit
+        td: button.btn-danger(ng-click='destroy(item)') Delete
