@@ -25,7 +25,7 @@ h2.text-center Grocery List
       button.btn.btn-xs.btn-success.form-control(ng-hide='cameraOn', ng-click='useCamera()') Open Camera
       button.btn.btn-xs.btn-success.form-control(ng-show='cameraOn', ng-click='cameraOff()') Close Camera
       #my_camera
-      img#my_result(ng-src='{{item.photo}}')
+      img#my_result(ng-class='{ "hide": !cameraOn }', ng-src='{{item.photo}}')
       button.btn.btn-xs.btn-success.form-control(ng-click='takeSnapshot()') Take Picture
 
 .container

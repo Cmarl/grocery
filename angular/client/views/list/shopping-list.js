@@ -23,10 +23,14 @@ angular.module('grocery')
     $scope.editing = false;
     Item.update(item);
     $scope.item = {};
+    $scope.cameraOn = false;
+    $window.Webcam.reset();
   };
 
   $scope.makeChanges = function(item){
     $scope.item = item;
+    $scope.useCamera();
+    $scope.cameraOn = true;
     $scope.editing = true;
     Item.update(item);
   };
@@ -40,6 +44,7 @@ angular.module('grocery')
 
   $scope.update = function(item){
     Item.update(item);
+    $scope.item = {};
   };
 
 
